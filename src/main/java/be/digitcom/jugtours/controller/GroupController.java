@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class GroupController {
     private final Logger logger = LoggerFactory.getLogger(GroupController.class);
