@@ -4,11 +4,13 @@ import be.digitcom.jugtours.model.Event;
 import be.digitcom.jugtours.model.Group;
 import be.digitcom.jugtours.model.GroupRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+@Component
 public class Initializer implements CommandLineRunner {
     private final GroupRepository repository;
 
