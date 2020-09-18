@@ -4,8 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.time.Instant;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -13,4 +19,12 @@ import javax.persistence.Entity;
 @Builder
 @Entity
 public class Event {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private Instant data;
+    private String title;
+    private String description;
+    @ManyToMany
+    private Set<User> attendees;
 }
