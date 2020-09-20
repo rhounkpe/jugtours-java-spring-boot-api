@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RestController
-// @CrossOrigin
 @RequestMapping("/api")
 public class GroupController {
     private final Logger logger = LoggerFactory.getLogger(GroupController.class);
@@ -47,11 +46,22 @@ public class GroupController {
     }
 
     @PutMapping("/group/{id}")
-    ResponseEntity<Group> updateGroup(@Validated @RequestBody Group group) {
-        logger.info("Request to update group {}", group);
-        Group result = groupRepository.save(group);
-
-        return ResponseEntity.ok().body(result);
+    ResponseEntity<Group> updateGroup(@Validated @PathVariable Long id, @RequestBody Group group) {
+        logger.info("Request to update group: {}", group);
+        Optional<Group> optional = groupRepository.findById(id);
+        if (optional.isPresent()) {
+            Group g = optional.get();
+            System.out.println("Group reçu: " + group);
+          /*  g.setName(group.getName);
+            g.setAddress(group.getAddress);
+            g.setCity(group.getCity);
+            g.setStateOrProvince(group.getStateOrProvince);
+            g.setCountry(group.getCountry);
+            g.setPostalCode(group.getPostalCode);*/
+            Group result = groupRepository.save(group);
+            return ResponseEntity.ok().body(result);
+        }
+        return null;
     }
 
     @DeleteMapping("/group/{id}")
